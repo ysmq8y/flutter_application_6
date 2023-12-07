@@ -56,7 +56,9 @@ class _SignInPageState extends State<SignInPage> {
                   GoRouter.of(context)
                       .go('/after_login', extra: usernameEditor.text);
                 } else {
-                  wrongPassword = "wrong password";
+                  setState(() {
+                    wrongPassword = "wrong password";
+                  });
                 }
                 ;
               },
