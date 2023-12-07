@@ -18,9 +18,9 @@ final GoRouter _router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/home_screen',
+      path: '/after_login',
       builder: (BuildContext context, GoRouterState state) {
-        return MyHomePage();
+        return MyHomePage(username: state.extra as String);
       },
     ),
   ],

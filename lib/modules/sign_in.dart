@@ -11,24 +11,9 @@ class _SignInPageState extends State<SignInPage> {
   final usernameEditor = TextEditingController();
 
   final passwordEditor = TextEditingController();
+  final correctPassword = "12345";
 
   String wrongPassword = "";
-
-  // String username = usernameEditor.text;
-  passwordcheck() {
-    String enteredPassword = passwordEditor.text;
-    final correctPassword = "12345";
-    GoRouter.of(context).go('/after_login', extra: usernameEditor);
-
-    // if (correctPassword == enteredPassword) {
-    //   GoRouter.of(context).go('/after_login', extra: usernameEditor);
-    // } else
-    //   () {
-    //     setState(() {
-    //       wrongPassword = "you have intered the worng password";
-    //     });
-    //   };
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +51,15 @@ class _SignInPageState extends State<SignInPage> {
                       hintText: "enter your password")),
             ),
             ElevatedButton.icon(
-              onPressed: passwordcheck(),
+              onPressed: () {
+                if (passwordEditor.text == correctPassword) {
+                  GoRouter.of(context)
+                      .go('/after_login', extra: usernameEditor.text);
+                } else {
+                  wrongPassword = "wrong password";
+                }
+                ;
+              },
               icon: const Icon(Icons.login_outlined),
               label: const Text("sign in"),
             ),
